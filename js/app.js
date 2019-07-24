@@ -36,22 +36,24 @@ const cardsList = [
 	'fa-bicycle'
 ];
 
-const cardDeck = document.querySelector('ul.deck');
 let openCards = [];
 
+const ul = document.querySelector('ul.deck');
 cardsList.forEach(function(card) {
 	const li = document.createElement('li');
-	li.className = 'card';
+	li.classList = 'card';
 	li.innerHTML = `<i class="fa ${card}"></i>`;
-	cardDeck.appendChild(li);
+	ul.appendChild(li);
+});
 
-	li.addEventListener('click', function clickCard(cardElement) {
-		const cardTarget = cardElement.target;
-		if (openCards.length <= 1) {
-			cardTarget.classList.add('open', 'show');
-			openCards.push(cardTarget.innerHTML);
-		}
-	});
+ul.addEventListener('click', function(e) {
+	const clickTarget = e.target;
+
+	if (clickTarget.className === 'card') {
+		clickTarget.classList.add('open', 'show');
+	}
+
+	console.log(cardTarget);
 });
 
 // Shuffle function from http://stackoverflow.com/a/2450976
