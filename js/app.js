@@ -17,6 +17,8 @@
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+const deckOfCards = document.querySelector('ul.deck');
 const cardsList = [
 	'fa-diamond',
 	'fa-diamond',
@@ -37,24 +39,53 @@ const cardsList = [
 ];
 
 let openCards = [];
+let matchCards = [];
+shuffle(cardsList);
 
-const ul = document.querySelector('ul.deck');
 cardsList.forEach(function(card) {
 	const li = document.createElement('li');
 	li.classList = 'card';
 	li.innerHTML = `<i class="fa ${card}"></i>`;
-	ul.appendChild(li);
+	deckOfCards.appendChild(li);
 });
 
-ul.addEventListener('click', function(e) {
+deckOfCards.addEventListener('click', function(e) {
 	const clickTarget = e.target;
 
-	if (clickTarget.className === 'card') {
+	if (
+		!clickTarget.classList.contains('open') &&
+		!clickTarget.classList.contains('show') &&
+		!clickTarget.classList.contains('match')
+	) {
 		clickTarget.classList.add('open', 'show');
-	}
+		openCards.push(clickTarget);
 
-	console.log(cardTarget);
+		if (openCards.length === 2) {
+			if (openCards[0].innerHTML === openCards[1].innerHTML) {
+				let cardA = openCards[0];
+				let cardB = openCards[1];
+				cardA.classList.add('match');
+				cardB.classList.add('match');
+
+				matchCards.push(cardA, cardB);
+			} else {
+				setTimeout(function() {
+					openCards[0].classList.remove('open', 'show');
+					openCards[1].classList.remove('open', 'show');
+					openCards = [];
+				}, 500);
+			}
+		}
+	} else {
+		alert('You already flip this cards!');
+	}
 });
+
+function openCardList(card) {
+	if (card.className === 'open') {
+		openCards.push(card.innerHTML);
+	}
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
