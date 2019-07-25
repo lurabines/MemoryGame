@@ -61,19 +61,24 @@ deckOfCards.addEventListener('click', function(e) {
 		openCards.push(clickTarget);
 
 		if (openCards.length === 2) {
+			//disble the click event on the cards
+			for (let i = 0; i < cardsList.length; i++) {
+				const element = cardsList[i];
+				console.log(cardsList[i]);
+			}
 			if (openCards[0].innerHTML === openCards[1].innerHTML) {
 				let cardA = openCards[0];
 				let cardB = openCards[1];
 				cardA.classList.add('match');
 				cardB.classList.add('match');
-
+				openCards = [];
 				matchCards.push(cardA, cardB);
 			} else {
 				setTimeout(function() {
 					openCards[0].classList.remove('open', 'show');
 					openCards[1].classList.remove('open', 'show');
 					openCards = [];
-				}, 500);
+				}, 1000);
 			}
 		}
 	} else {
