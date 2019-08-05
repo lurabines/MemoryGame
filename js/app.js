@@ -98,33 +98,28 @@ function starRating() {
 		rating--;
 		stars[1].classList.add('empty-star');
 		console.log(rating);
-	} else if (moves === 34) {
-		rating--;
-		stars[0].classList.add('empty-star');
-		console.log(rating);
 	}
 }
 
 //Start Timer for the Game
 function startTimer() {
-	seconds = 0;
-	minutes = 0;
-
-	//The Timer for the Game
-	function setTimer() {
-		seconds = seconds + 1;
-		if (seconds > 59) {
-			seconds = 00;
-			minutes = minutes + 1;
-		}
-		secondsText.innerText = seconds;
-		minutesText.innerText = minutes;
-	}
-	setInterval(setTimer, 1000);
+	let gameTimerStart = setInterval(setTimer, 1000);
 }
 //Stop Timer for the Game
 function stopTimer() {
-	clearInterval(startTimer);
+	clearInterval(gameTimerStart);
+}
+//Setting the Timer for the Game
+function setTimer() {
+	let seconds = 0;
+	let minutes = 0;
+	seconds = seconds + 1;
+	if (seconds > 59) {
+		seconds = 00;
+		minutes = minutes + 1;
+	}
+	secondsText.innerText = seconds;
+	minutesText.innerText = minutes;
 }
 
 //Add and Event Listener to the Card Deck, and listen to the user click target.
