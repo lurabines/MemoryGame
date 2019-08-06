@@ -1,9 +1,18 @@
 # Memory Game Project
+Memory Game is a complete browser-based card matching game.
 
 ## Table of Contents
-
+* [Game_Rules](#game-rules)
 * [Instructions](#instructions)
-* [Contributing](#contributing)
+* [Technical](#technical)
+* [Credit](#credit)
+* [Tools_Used](#tool-used)
+
+
+## Game Rules
+The game board consists of sixteen "cards" arranged in a grid. The deck is made up of eight different pairs of cards, each with different symbols on one side. The cards are arranged randomly on the grid with the symbol face down. The gameplay rules are very simple: flip over two hidden cards at a time to locate the ones that match!
+
+
 
 ## Instructions
 
@@ -13,8 +22,18 @@ To get started, open `js/app.js` and start building out the app's functionality
 
 For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
 
-## Contributing
+## Technical
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+This project consists of the following assets:
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+* **index.html**  - contains the game's html structure.
+* **main.css** - contains the game's board styling.
+* **app.js** - contains all the board actions & logic.
+
+## Credits
+
+* For shuffling the cards **shuffle** javaScript function was used from http://stackoverflow.com/a/2450976
+
+## Tools Used
+
+* [Fontawesome](http://fontawesome.io/icons/) was used to display game card's icons.
