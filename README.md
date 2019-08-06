@@ -5,7 +5,7 @@ Memory Game is a complete browser-based card matching game.
 * [Game_Rules](#game-rules)
 * [Instructions](#instructions)
 * [Technical](#technical)
-* [Credit](#credit)
+* [Credits](#credits)
 * [Tools_Used](#tools-used)
 
 
