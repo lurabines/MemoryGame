@@ -29,6 +29,7 @@ let cardsList = [
 	'fa-bomb',
 	'fa-bicycle'
 ];
+
 cardsList = cardsList.concat(cardsList);
 const stars = document.querySelectorAll('.stars li');
 let rating = 3;
@@ -40,6 +41,7 @@ moveContainer.innerHTML = 0;
 let moves = 0;
 let openCards = [];
 let matchCards = 0;
+let gameTimer = setInterval(setTimer, 1000);
 
 shuffle(cardsList);
 createDeck();
@@ -79,7 +81,6 @@ function createDeck() {
 		li.innerHTML = `<i class="fa ${card}"></i>`;
 		document.querySelector('ul.deck').appendChild(li);
 	});
-	startTimer();
 }
 //Start Counting the User moves
 function countMoves() {
@@ -88,7 +89,7 @@ function countMoves() {
 	starRating();
 }
 
-//Star Rating in the Game
+//Star Rating with user moves in the Game
 function starRating() {
 	if (moves === 17) {
 		rating--;
@@ -101,25 +102,35 @@ function starRating() {
 	}
 }
 
-//Start Timer for the Game
-function startTimer() {
-	let gameTimerStart = setInterval(setTimer, 1000);
-}
-//Stop Timer for the Game
-function stopTimer() {
-	clearInterval(gameTimerStart);
-}
 //Setting the Timer for the Game
+let seconds = 0;
+let minutes = 0;
+
 function setTimer() {
-	let seconds = 0;
-	let minutes = 0;
 	seconds = seconds + 1;
+
 	if (seconds > 59) {
 		seconds = 00;
 		minutes = minutes + 1;
 	}
 	secondsText.innerText = seconds;
 	minutesText.innerText = minutes;
+
+	if (seconds < 10) {
+		secondsText.innerText = '0' + seconds;
+	}
+	if (minutes < 10) {
+		minutesText.innerText = '0' + minutes;
+	}
+}
+
+// //Start Timer for the Game
+// function startTimer() {}
+
+//Stop Timer for the Game
+function stopTimer() {
+	console.log('stop timer');
+	clearInterval(gameTimer);
 }
 
 //Add and Event Listener to the Card Deck, and listen to the user click target.
