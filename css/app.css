@@ -1,36 +1,36 @@
 html {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
+	box-sizing: inherit;
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+	background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+	font-family: 'Coda', cursive;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
 }
 
 /*
@@ -38,47 +38,47 @@ h1 {
  */
 
 .deck {
-    width: 660px;
-    min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0 3em;
+	width: 660px;
+	min-height: 680px;
+	background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+	padding: 32px;
+	border-radius: 10px;
+	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 0 3em;
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
-    background: #2e3d49;
-    font-size: 0;
-    color: #ffffff;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+	height: 125px;
+	width: 125px;
+	background: #2e3d49;
+	font-size: 0;
+	color: #ffffff;
+	border-radius: 8px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
 .deck .card.open {
-    transform: rotateY(0);
-    background: #02b3e4;
-    cursor: default;
+	transform: rotateY(0);
+	background: #02b3e4;
+	cursor: default;
 }
 
 .deck .card.show {
-    font-size: 33px;
+	font-size: 33px;
 }
 
 .deck .card.match {
-    cursor: default;
-    background: #02ccba;
-    font-size: 33px;
+	cursor: default;
+	background: #02ccba;
+	font-size: 33px;
 }
 
 /*
@@ -86,24 +86,112 @@ h1 {
  */
 
 .score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
+	text-align: left;
+	width: 345px;
+	margin-bottom: 10px;
 }
 
 .score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	margin: 0 5px 0 0;
 }
 
 .score-panel .stars li {
-    list-style: none;
-    display: inline-block;
+	list-style: none;
+	display: inline-block;
+}
+
+.empty-star {
+	color: transparent;
+	-webkit-text-stroke-width: 1.5px;
+	-webkit-text-stroke-color: #ffcd00;
 }
 
 .score-panel .restart {
-    float: right;
-    cursor: pointer;
+	float: right;
+	cursor: pointer;
+}
+
+#timer {
+	display: inline-block;
+	margin-left: 40px;
+}
+
+/*** modal styles ***/
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 9999;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+	padding-top: 0px;
+}
+.modal__content {
+	background: #2c3344;
+	width: 80%;
+	max-width: 640px;
+	margin: 3rem auto;
+	border-radius: 4px;
+	padding: 4rem 2rem;
+	position: relative;
+	animation: 0.3s slideDown;
+}
+/*** custom animation ***/
+@keyframes slideDown {
+	from {
+		top: -100px;
+		opacity: 0;
+	}
+	to {
+		top: 0;
+		opacity: 1;
+	}
+}
+.open {
+	display: block;
+}
+
+.modal__title {
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+}
+.close {
+	position: absolute;
+	color: #ddd7ce;
+	top: 0px;
+	left: 10px;
+	font-size: 4rem;
+	background: transparent;
+	border: 0;
+	outline: 0;
+}
+.close:hover {
+	cursor: pointer;
+}
+.modal__body {
+	padding: 2rem;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	color: #ddd7ce;
+	line-height: 2rem;
+}
+
+.play-again__button {
+	display: block;
+	background-color: #02ccba;
+	color: white;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: normal;
+	padding: 10px 25px;
+	border: none;
+	border-radius: 8px;
+	margin: auto;
+	max-width: 30%;
 }
