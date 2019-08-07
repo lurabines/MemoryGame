@@ -43,12 +43,23 @@ let openCards = [];
 let matchCards = 0;
 let gameTimer = setInterval(setTimer, 1000);
 
+const modal = document.querySelector('.modal');
+const closeModalButton = document.querySelector('.close');
+const playAgainButton = document.querySelector('.play-again__button');
+const modalMoves = document.querySelector('.modal__body .moves-count');
+const modalMinutes = document.querySelector('.modal__body .mins');
+const modalSeconds = document.querySelector('.modal__body .seconds');
+const modalRating = document.querySelector('.modal__body .rating');
+
 shuffle(cardsList);
 createDeck();
 enableListeners();
 
 // Click event listener attached to restart button
 restartBtn.addEventListener('click', restartGame);
+
+// Click event listener attached to restart button
+playAgainButton.addEventListener('click', restartGame);
 
 //Restart The Game function
 function restartGame() {
@@ -174,6 +185,7 @@ function cardsMatch() {
 	if (matchCards === 16) {
 		setTimeout(gameComplete, 400);
 		stopTimer();
+		openScoreScreen();
 	}
 	openCards = [];
 	enableListeners();
@@ -184,6 +196,23 @@ function cardsDontMatch() {
 	openCards[1].classList.remove('open', 'show');
 	openCards = [];
 	enableListeners();
+}
+
+//Open User Score Screen
+function openScoreScreen() {
+	modal.classList.add('open');
+	console.log(modalMoves.innerHTML);
+	modalMinutes.textContent = minutes > 0 ? `${minutes} minutes, ` : '';
+	modalSeconds.textContent = `${seconds} seconds`;
+	modalMoves.textContent = `${moves} moves`;
+	modalRating.textContent = rating;
+}
+// Click event listener attached to x button to close modal
+closeModalButton.addEventListener('click', closeScoreScreen);
+
+//Close User Score Screen
+function closeScoreScreen() {
+	modal.classList.remove('open');
 }
 
 function gameComplete() {
